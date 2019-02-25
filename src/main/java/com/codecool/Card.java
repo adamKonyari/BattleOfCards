@@ -58,6 +58,13 @@ public class Card implements Comparable<Card>{
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Card{" +
+            "name='" + name + '\'' +
+            ", game='" + game + '\'' +
+            ", strength=" + strength +
+            ", endurance=" + endurance +
+            ", intellingence=" + intellingence +
+            ", vitality=" + vitality +
+            '}';
     }
 }
