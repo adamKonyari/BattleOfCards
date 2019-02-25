@@ -13,7 +13,7 @@ public class Card implements Comparable<Card>{
 
     private int strength;
     private int endurance;
-    private int intellingence;
+    private int intelligence;
     private int vitality;
 
     public Card(String name, String game, int strength, int endurance, int intellingence, int vitality) {
@@ -21,7 +21,7 @@ public class Card implements Comparable<Card>{
         this.game = game;
         this.strength = strength;
         this.endurance = endurance;
-        this.intellingence = intellingence;
+        this.intelligence = intellingence;
         this.vitality = vitality;
     }
 
@@ -41,8 +41,8 @@ public class Card implements Comparable<Card>{
         return endurance;
     }
 
-    public int getIntellingence() {
-        return intellingence;
+    public int getIntelligence() {
+        return intelligence;
     }
 
     public int getVitality() {
