@@ -14,15 +14,15 @@ public class Card implements Comparable<Card>{
     private int strength;
     private int endurance;
     private int intelligence;
-    private int vitality;
+    private int agility;
 
-    public Card(String name, String game, int strength, int endurance, int intellingence, int vitality) {
+    public Card(String name, String game, int strength, int endurance, int intellingence, int agility) {
         this.name = name;
         this.game = game;
         this.strength = strength;
         this.endurance = endurance;
         this.intelligence = intellingence;
-        this.vitality = vitality;
+        this.agility = agility;
     }
 
     public String getName() {
@@ -45,9 +45,7 @@ public class Card implements Comparable<Card>{
         return intelligence;
     }
 
-    public int getVitality() {
-        return vitality;
-    }
+    public int getAgility() { return agility; }
 
 
     @Override
@@ -58,6 +56,13 @@ public class Card implements Comparable<Card>{
 
     @Override
     public String toString() {
-        return super.toString();
+        return "Card{" +
+            "name='" + name + '\'' +
+            ", game='" + game + '\'' +
+            ", strength=" + strength +
+            ", endurance=" + endurance +
+            ", intellingence=" + intelligence +
+            ", agility=" + agility +
+            '}';
     }
 }

@@ -15,7 +15,6 @@ public class Deck {
 
         Collections.shuffle(cards);
     }
-
     public void sort(List<Card> cards) {
         Collections.sort(cards);
     }

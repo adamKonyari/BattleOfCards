@@ -10,6 +10,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class XMLParser {
 
@@ -23,17 +25,18 @@ public class XMLParser {
         return doc;
     }
 
-    public Card CardParser(Document doc) {
-        Card card = null;
+    public List<Card> CardParser(Document doc) {
+        List<Card> cardList = new ArrayList<>();
         NodeList nodeList = doc.getElementsByTagName("Hero");
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node tempNode = nodeList.item(i);
             Element tempElement = (Element) tempNode;
-            card = new Card(tempElement.getAttribute("name"),tempElement.getAttribute("game"),
-                Integer.parseInt(tempElement.getAttribute(("strength"))),Integer.parseInt(tempElement.getAttribute(("endurance"))),
-                Integer.parseInt(tempElement.getAttribute(("intelligence"))),Integer.parseInt(tempElement.getAttribute(("vitality"))));
-
+            Node attributeNode = tempElement.getElementsByTagName("Attribute").item(0);
+            Element attributeElement = (Element) attributeNode;
+            cardList.add(new Card(attributeElement.getAttribute("name"),attributeElement.getAttribute("game"),
+                Integer.parseInt(attributeElement.getAttribute(("strength"))),Integer.parseInt(attributeElement.getAttribute(("endurance"))),
+                Integer.parseInt(attributeElement.getAttribute(("intelligence"))),Integer.parseInt(attributeElement.getAttribute(("agility")))));
         }
-        return card;
+        return cardList;
     }
 }
