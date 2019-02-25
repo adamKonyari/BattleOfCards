@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Heroes>
+    <Hero name = "Super Mario">
+        <Attributes>
+            <Attribute id = "strength">60</Attribute>
+            <Attribute id = "endurance">80</Attribute>
+            <Attribute id = "intelligence">40</Attribute>
+            <Attribute id = "vitality">65</Attribute>
+        </Attributes>
+    </Hero>
+    <Hero name = "Link">
+        <Attributes>
+            <Attribute id = "strength">80</Attribute>
+            <Attribute id = "endurance">75</Attribute>
+            <Attribute id = "intelligence">65</Attribute>
+            <Attribute id = "vitality">55</Attribute>
+        </Attributes>
+    </Hero>
+</Heroes>
