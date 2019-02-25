@@ -1,13 +1,15 @@
 package com.codecool;
 
+
+
 public class Main {
 
-    public String getWelcomeString() {
-        return "Hi!";
-    }
-
     public static void main(String[] args) {
-        Main main = new Main();
-        System.out.println(main.getWelcomeString());
+        XMLParser xml = new XMLParser();
+        try {
+            System.out.println(xml.CardParser(xml.getDoc("heroes.xml")));
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 }

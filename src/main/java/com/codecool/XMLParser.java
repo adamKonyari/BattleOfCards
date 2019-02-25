@@ -25,14 +25,17 @@ public class XMLParser {
         return doc;
     }
 
-    public List<Card> CardParser(Document doc) {
-        List<Card> cardList = new ArrayList<>();
+    public Card CardParser(Document doc) {
+        Card card = null;
         NodeList nodeList = doc.getElementsByTagName("Hero");
         for (int i = 0; i < nodeList.getLength(); i++) {
             Node tempNode = nodeList.item(i);
             Element tempElement = (Element) tempNode;
+            card = new Card(tempElement.getAttribute("name"),tempElement.getAttribute("game"),
+                Integer.parseInt(tempElement.getAttribute(("strength"))),Integer.parseInt(tempElement.getAttribute(("endurance"))),
+                Integer.parseInt(tempElement.getAttribute(("intelligence"))),Integer.parseInt(tempElement.getAttribute(("vitality"))));
 
         }
-        return cardList;
+        return card;
     }
 }
