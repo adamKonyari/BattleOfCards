@@ -1,19 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Heroes>
-    <Hero name = "Super Mario">
-        <Attributes>
-            <Attribute id = "strength">60</Attribute>
-            <Attribute id = "endurance">80</Attribute>
-            <Attribute id = "intelligence">40</Attribute>
-            <Attribute id = "vitality">65</Attribute>
-        </Attributes>
+    <Hero>
+        <Attribute name = "Super Mario" game = "Super Mario Brothers" strength = "60" endurance = "80" intelligence = "40" vitality = "65"/>
     </Hero>
-    <Hero name = "Link">
-        <Attributes>
-            <Attribute id = "strength">80</Attribute>
-            <Attribute id = "endurance">75</Attribute>
-            <Attribute id = "intelligence">65</Attribute>
-            <Attribute id = "vitality">55</Attribute>
-        </Attributes>
+    <Hero>
+        <Attribute name = "Link" game = "The Legend Of Zelda" strength = "80" endurance = "75" intelligence = "65" vitality = "55"/>
     </Hero>
 </Heroes>
