@@ -5,17 +5,23 @@ import java.util.List;
 
 public class Deck {
 
+    private XMLParser xml = new XMLParser();
     private List<Card> cards;
 
-    public Deck(List<Card> cards) {
-        this.cards = cards;
+    public Deck() {
+        this.cards = xml.CardParser(xml.getDoc("src/main/resources/heroes.xml"));
     }
 
-    public void shuffle(List<Card> cards) {
+    public void shuffle() {
 
-        Collections.shuffle(cards);
+        Collections.shuffle(this.cards);
     }
-    public void sort(List<Card> cards) {
-        Collections.sort(cards);
+
+    public void sort() {
+        Collections.sort(this.cards);
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 }

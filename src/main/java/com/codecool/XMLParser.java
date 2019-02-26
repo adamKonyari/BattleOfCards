@@ -15,11 +15,21 @@ import java.util.List;
 
 public class XMLParser {
 
-    public Document getDoc(String xmlPath) throws ParserConfigurationException, IOException, SAXException {
+    public Document getDoc(String xmlPath) {
 
+        Document doc = null;
         DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-        DocumentBuilder db = dbf.newDocumentBuilder();
-        Document doc = db.parse(xmlPath);
+        DocumentBuilder db = null;
+        try {
+            db = dbf.newDocumentBuilder();
+            doc = db.parse(xmlPath);
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         doc.getDocumentElement().normalize();
 
         return doc;
@@ -33,9 +43,9 @@ public class XMLParser {
             Element tempElement = (Element) tempNode;
             Node attributeNode = tempElement.getElementsByTagName("Attribute").item(0);
             Element attributeElement = (Element) attributeNode;
-            cardList.add(new Card(attributeElement.getAttribute("name"),attributeElement.getAttribute("game"),
-                Integer.parseInt(attributeElement.getAttribute(("strength"))),Integer.parseInt(attributeElement.getAttribute(("endurance"))),
-                Integer.parseInt(attributeElement.getAttribute(("intelligence"))),Integer.parseInt(attributeElement.getAttribute(("agility")))));
+            cardList.add(new Card(attributeElement.getAttribute("name"), attributeElement.getAttribute("game"),
+                Integer.parseInt(attributeElement.getAttribute(("strength"))), Integer.parseInt(attributeElement.getAttribute(("endurance"))),
+                Integer.parseInt(attributeElement.getAttribute(("intelligence"))), Integer.parseInt(attributeElement.getAttribute(("agility")))));
         }
         return cardList;
     }
