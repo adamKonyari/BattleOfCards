@@ -1,6 +1,6 @@
 package com.codecool;
 
-public class GamePlay {
+public class Gameplay {
     Ui ui = new Ui();
     Deck deck = new Deck();
 

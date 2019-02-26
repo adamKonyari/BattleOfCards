@@ -2,8 +2,6 @@ package com.codecool;
 
 /*
 strength, endurance, intelligence, vitality
-
-
 */
 
 public class Card implements Comparable<Card>{
@@ -50,7 +48,6 @@ public class Card implements Comparable<Card>{
 
     @Override
     public int compareTo(Card o) {
-
         return this.getName().compareTo(o.getName());
     }
 
