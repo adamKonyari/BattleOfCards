@@ -6,6 +6,7 @@ public class Player {
     private int age;
     private String name;
     private List<Card> hand;
+    private boolean starts = false;
 
     public Player(String name,int age, List<Card> hand) {
         this.age = age;
@@ -23,6 +24,14 @@ public class Player {
 
     public List<Card> getHand() {
         return hand;
+    }
+
+    public boolean isStarts() {
+        return starts;
+    }
+
+    public void starts() {
+        this.starts = true;
     }
 
     public void setHand(List<Card> hand) {
