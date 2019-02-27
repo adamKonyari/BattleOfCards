@@ -1,6 +1,5 @@
 package com.codecool;
 
-import java.lang.reflect.Array;
 import java.util.*;
 
 public class Gameplay {
@@ -90,9 +89,9 @@ public class Gameplay {
 
         for (int i = 0; i < deck.getCards().size(); i++) {
             if ((i + 1) % 2 == 1) {
-                player1.addHand(deck.getCards().get(i));
+                player1.addCardToHand(deck.getCards().get(i));
             } else {
-                player2.addHand(deck.getCards().get(i));
+                player2.addCardToHand(deck.getCards().get(i));
             }
         }
         promptEnterKey();
@@ -100,24 +99,37 @@ public class Gameplay {
     }
 
     public void pvp() {
+        do {
+            if (player1.isStarts()) {
+                round(player1, player2);
+            } else {
+                round(player2, player1);
+            }
+            System.out.println("p1: " + player1.getHand().size());
+            System.out.println("p2: " + player2.getHand().size());
+        } while(player1.getHand().size() == 0 || player2.getHand().size() == 0);
+
+       if(player2.getHand().size() == 0) {
+           System.out.println(player1.getName() + " won the game!");
+       } else if(player1.getHand().size() == 0){
+           System.out.println(player2.getName() + " won the game!");
+       }
+       promptEnterKey();
+    }
+
+    private Player round(Player p1, Player p2) {
 
         List<Card> cardsToCompare = new ArrayList<>();
         int input;
-        if (player1.isStarts()) {
-            firstPlayer = player1;
-            secondPlayer = player2;
-        } else {
-            firstPlayer = player2;
-            secondPlayer = player1;
-        }
-        System.out.println(firstPlayer.getName() + " will start the game!");
-        do {
-            cardsToCompare.add(firstPlayer.getHand().get(0));
-            cardsToCompare.add(secondPlayer.getHand().get(0));
-            cardDrawer(firstPlayer.getHand().get(0));
-            System.out.println("1.strength\n2.endurance\n3.intelligence\n4.agility");
+            System.out.println(p1.getName() + " will start!");
+            cardsToCompare.add(p1.getHand().get(0));
+            cardsToCompare.add(p2.getHand().get(0));
+            cardDrawer(p1.getHand().get(0));
+
+            System.out.println("1. Strength\n2. Endurance\n3. Intelligence\n4. Agility\n");
             System.out.print("Choose an attribute: ");
             input = Integer.parseInt(getUserInput());
+
             switch (input) {
                 case 1:
                     Collections.sort(cardsToCompare, strengthComp);
@@ -132,31 +144,44 @@ public class Gameplay {
                     Collections.sort(cardsToCompare, agilityComp);
                     break;
             }
-            if(firstPlayer.getHand().contains(cardsToCompare.get(0))){
-                secondPlayer.removeCardFromHand(secondPlayer.getHand().get(0));
-                firstPlayer.addCardToHand(cardsToCompare.get(1));
-                firstPlayer.getHand().set(firstPlayer.getHand().size()-1,cardsToCompare.get(0));
-                System.out.println("firstPlayer won the round");
-                cardsToCompare.clear();
-                promptEnterKey();
-            }else{
-                firstPlayer.removeCardFromHand(firstPlayer.getHand().get(0));
-                secondPlayer.addCardToHand(cardsToCompare.get(1));
-                secondPlayer.getHand().set(secondPlayer.getHand().size()-1,cardsToCompare.get(0));
-                System.out.println("secondPlayer won the round");
-                cardsToCompare.clear();
-                promptEnterKey();
-            }
-        }while(firstPlayer.getHand().isEmpty() || secondPlayer.getHand().isEmpty());
+            Card winnerCard = cardsToCompare.get(0);
+            Card looserCard = cardsToCompare.get(1);
 
+            if(p1.getHand().get(0) == winnerCard) {
+                System.out.println("The looser card is:");
+                cardDrawer(looserCard);
+                System.out.println("The winner card is:");
+                cardDrawer(winnerCard);
+                System.out.println(p1.getName() + " won the round.");
+                p1.wonTheRound();
+                p2.lostTheRound();
+                p1.addCardToHand(looserCard);
+                promptEnterKey();
+                return p1;
+            } else {
+                System.out.println("The looser card is:");
+                cardDrawer(looserCard);
+                System.out.println("The winner card is:");
+                cardDrawer(winnerCard);
+
+                System.out.println(p2.getName() + " won the round.");
+                p2.wonTheRound();
+                p1.lostTheRound();
+                p2.addCardToHand(looserCard);
+                p2.starts();
+                p1.doesNotStart();
+                promptEnterKey();
+                return p2;
+            }
     }
+
 
     Comparator<Card> strengthComp = new Comparator<Card>() {
         @Override
         public int compare(Card o1, Card o2) {
-            if (o1.getStrength() > o2.getStrength()) {
+            if (o2.getStrength() > o1.getStrength()) {
                 return 1;
-            } else if ((o1.getStrength() < o2.getStrength())) {
+            } else if ((o2.getStrength() < o1.getStrength())) {
                 return -1;
             }
             return 0;

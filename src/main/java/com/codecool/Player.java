@@ -34,14 +34,22 @@ public class Player {
         this.starts = true;
     }
 
+    public void doesNotStart() {
+        this.starts = false;
+    }
+
     public void setHand(List<Card> hand) {
         this.hand = hand;
     }
-    public void addHand(Card card){
+    public void addCardToHand(Card card){
         hand.add(card);
     }
-    public void removeCardFromHand(Card card){
-        hand.remove(card);
+    public void lostTheRound(){
+        hand.remove(0);
     }
-    public void addCardToHand(Card card) { hand.add(card);}
+    public void wonTheRound() {
+        Card tempCard = this.hand.get(0);
+        this.hand.remove(tempCard);
+        this.hand.add(tempCard);
+    }
 }
