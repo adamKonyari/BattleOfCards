@@ -14,9 +14,6 @@ public class Player {
         this.hand = hand;
     }
 
-    public int getAge() {
-        return age;
-    }
 
     public String getName() {
         return name;
@@ -26,7 +23,7 @@ public class Player {
         return hand;
     }
 
-    public boolean isStarts() {
+    public boolean ifStarts() {
         return starts;
     }
 
@@ -38,9 +35,6 @@ public class Player {
         this.starts = false;
     }
 
-    public void setHand(List<Card> hand) {
-        this.hand = hand;
-    }
     public void addCardToHand(Card card){
         hand.add(card);
     }

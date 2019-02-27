@@ -94,20 +94,18 @@ public class Gameplay {
                 player2.addCardToHand(deck.getCards().get(i));
             }
         }
-        promptEnterKey();
-        pvp();
     }
 
     public void pvp() {
         do {
-            if (player1.isStarts()) {
+            if (player1.ifStarts()) {
                 round(player1, player2);
             } else {
                 round(player2, player1);
             }
             System.out.println("p1: " + player1.getHand().size());
             System.out.println("p2: " + player2.getHand().size());
-        } while(player1.getHand().size() == 0 || player2.getHand().size() == 0);
+        } while(player1.getHand().size() != 0 || player2.getHand().size() != 0);
 
        if(player2.getHand().size() == 0) {
            System.out.println(player1.getName() + " won the game!");
