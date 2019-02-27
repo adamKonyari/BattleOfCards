@@ -43,4 +43,5 @@ public class Player {
     public void removeCardFromHand(Card card){
         hand.remove(card);
     }
+    public void addCardToHand(Card card) { hand.add(card);}
 }

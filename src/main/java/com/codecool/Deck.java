@@ -17,10 +17,6 @@ public class Deck {
         Collections.shuffle(this.cards);
     }
 
-    public void sort() {
-        Collections.sort(this.cards);
-    }
-
     public List<Card> getCards() {
         return cards;
     }

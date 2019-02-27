@@ -1,7 +1,7 @@
 package com.codecool;
 
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.lang.reflect.Array;
+import java.util.*;
 
 public class Gameplay {
     private Scanner scanner = new Scanner(System.in);
@@ -96,22 +96,106 @@ public class Gameplay {
             }
         }
         promptEnterKey();
+        pvp();
     }
 
-    public void pvp(){
+    public void pvp() {
 
-        if(player1.isStarts()){
+        List<Card> cardsToCompare = new ArrayList<>();
+        int input;
+        if (player1.isStarts()) {
             firstPlayer = player1;
             secondPlayer = player2;
-        }
-        else{
+        } else {
             firstPlayer = player2;
             secondPlayer = player1;
         }
-        System.out.println(firstPlayer.getName());
+        System.out.println(firstPlayer.getName() + " will start the game!");
+        do {
+            cardsToCompare.add(firstPlayer.getHand().get(0));
+            cardsToCompare.add(secondPlayer.getHand().get(0));
+            cardDrawer(firstPlayer.getHand().get(0));
+            System.out.println("1.strength\n2.endurance\n3.intelligence\n4.agility");
+            System.out.print("Choose an attribute: ");
+            input = Integer.parseInt(getUserInput());
+            switch (input) {
+                case 1:
+                    Collections.sort(cardsToCompare, strengthComp);
+                    break;
+                case 2:
+                    Collections.sort(cardsToCompare, enduranceComp);
+                    break;
+                case 3:
+                    Collections.sort(cardsToCompare, intelligenceComp);
+                    break;
+                case 4:
+                    Collections.sort(cardsToCompare, agilityComp);
+                    break;
+            }
+            if(firstPlayer.getHand().contains(cardsToCompare.get(0))){
+                secondPlayer.removeCardFromHand(secondPlayer.getHand().get(0));
+                firstPlayer.addCardToHand(cardsToCompare.get(1));
+                firstPlayer.getHand().set(firstPlayer.getHand().size()-1,cardsToCompare.get(0));
+                System.out.println("firstPlayer won the round");
+                cardsToCompare.clear();
+                promptEnterKey();
+            }else{
+                firstPlayer.removeCardFromHand(firstPlayer.getHand().get(0));
+                secondPlayer.addCardToHand(cardsToCompare.get(1));
+                secondPlayer.getHand().set(secondPlayer.getHand().size()-1,cardsToCompare.get(0));
+                System.out.println("secondPlayer won the round");
+                cardsToCompare.clear();
+                promptEnterKey();
+            }
+        }while(firstPlayer.getHand().isEmpty() || secondPlayer.getHand().isEmpty());
 
-        cardDrawer(firstPlayer.getHand().get(0));
     }
 
+    Comparator<Card> strengthComp = new Comparator<Card>() {
+        @Override
+        public int compare(Card o1, Card o2) {
+            if (o1.getStrength() > o2.getStrength()) {
+                return 1;
+            } else if ((o1.getStrength() < o2.getStrength())) {
+                return -1;
+            }
+            return 0;
+        }
+    };
 
+    Comparator<Card> enduranceComp = new Comparator<Card>() {
+        @Override
+        public int compare(Card o1, Card o2) {
+            if (o1.getEndurance() > o2.getEndurance()) {
+                return 1;
+            } else if ((o1.getEndurance() < o2.getEndurance())) {
+                return -1;
+            }
+            return 0;
+        }
+    };
+
+    Comparator<Card> agilityComp = new Comparator<Card>() {
+        @Override
+        public int compare(Card o1, Card o2) {
+            if (o1.getAgility() > o2.getAgility()) {
+                return 1;
+            } else if ((o1.getAgility() < o2.getAgility())) {
+                return -1;
+            }
+            return 0;
+        }
+    };
+
+    Comparator<Card> intelligenceComp = new Comparator<Card>() {
+        @Override
+        public int compare(Card o1, Card o2) {
+            if (o1.getIntelligence() > o2.getIntelligence()) {
+                return 1;
+            } else if ((o1.getIntelligence() < o2.getIntelligence())) {
+                return -1;
+            }
+            return 0;
+        }
+    };
 }
