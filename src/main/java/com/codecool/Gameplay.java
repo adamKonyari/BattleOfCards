@@ -15,14 +15,21 @@ public class Gameplay {
         int menuOption;
 
         do {
-            menuPrinter(new String[]{
-                "New Game!",
-                "Not implemented"
-            });
-
-            System.out.print("Please select an option: ");
-            menuOption = Integer.parseInt(getUserInput());
-
+            while (true) {
+                menuPrinter(new String[]{
+                    "New Game!",
+                    "Not implemented"
+                });
+                System.out.print("Please select an option: ");
+                try {
+                    menuOption = Integer.parseInt(getUserInput());
+                    break;
+                } catch (NumberFormatException ne) {
+                    System.out.println("Invalid input. Please try again!");
+                    promptEnterKey();
+                    continue;
+                }
+            }
             switch (menuOption) {
                 case 1:
                     playerSetup();
@@ -70,15 +77,27 @@ public class Gameplay {
     }
 
     private void playerSetup() {
-        System.out.print("Player one name: ");
-        String p1Name = getUserInput();
-        System.out.print("Player one age: ");
-        int p1Age = Integer.parseInt(getUserInput());
-        System.out.print("Player two name: ");
-        String p2Name = getUserInput();
-        System.out.print("Player two age: ");
-        int p2Age = Integer.parseInt(getUserInput());
-
+        String p1Name;
+        String p2Name;
+        int p2Age;
+        int p1Age;
+        while (true) {
+            try {
+                System.out.print("Player one name: ");
+                p1Name = getUserInput();
+                System.out.print("Player one age: ");
+                p1Age = Integer.parseInt(getUserInput());
+                System.out.print("Player two name: ");
+                p2Name = getUserInput();
+                System.out.print("Player two age: ");
+                p2Age = Integer.parseInt(getUserInput());
+                break;
+            } catch (NumberFormatException ne) {
+                System.out.println("Invalid input. Please try again!");
+                promptEnterKey();
+                continue;
+            }
+        }
         player1 = new Player(p1Name, p1Age, new ArrayList<>());
         player2 = new Player(p2Name, p2Age, new ArrayList<>());
         if (p1Age <= p2Age) {
@@ -106,83 +125,83 @@ public class Gameplay {
             }
             System.out.println("p1: " + player1.getHand().size());
             System.out.println("p2: " + player2.getHand().size());
-        } while(player1.getHand().size() != 0 || player2.getHand().size() != 0);
+        } while (player1.getHand().size() != 0 && player2.getHand().size() != 0);
 
-       if(player2.getHand().size() == 0) {
-           System.out.println(player1.getName() + " won the game!");
-       } else if(player1.getHand().size() == 0){
-           System.out.println(player2.getName() + " won the game!");
-       }
-       promptEnterKey();
+        if (player2.getHand().size() == 0) {
+            System.out.println(player1.getName() + " won the game!");
+        } else if (player1.getHand().size() == 0) {
+            System.out.println(player2.getName() + " won the game!");
+        }
+        promptEnterKey();
     }
 
     private Player round(Player p1, Player p2) {
 
         List<Card> cardsToCompare = new ArrayList<>();
         int input;
-            System.out.println(p1.getName() + " will start!");
-            if(p1.getHand().size() != 0 || p2.getHand().size() != 0){
-                cardsToCompare.add(p1.getHand().get(0));
-                cardsToCompare.add(p2.getHand().get(0));
-            }
-            cardDrawer(p1.getHand().get(0));
+        System.out.println(p1.getName() + " will start!");
+        if (p1.getHand().size() != 0 && p2.getHand().size() != 0) {
+            cardsToCompare.add(p1.getHand().get(0));
+            cardsToCompare.add(p2.getHand().get(0));
+        }
+        cardDrawer(p1.getHand().get(0));
 
-            System.out.println("1. Strength\n2. Endurance\n3. Intelligence\n4. Agility\n");
-            System.out.print("Choose an attribute: ");
-            input = Integer.parseInt(getUserInput());
+        System.out.println("1. Strength\n2. Endurance\n3. Intelligence\n4. Agility\n");
+        System.out.print("Choose an attribute: ");
+        input = Integer.parseInt(getUserInput());
 
-            switch (input) {
-                case 1:
-                    Collections.sort(cardsToCompare, strengthComp);
-                    break;
-                case 2:
-                    Collections.sort(cardsToCompare, enduranceComp);
-                    break;
-                case 3:
-                    Collections.sort(cardsToCompare, intelligenceComp);
-                    break;
-                case 4:
-                    Collections.sort(cardsToCompare, agilityComp);
-                    break;
-            }
-            Card winnerCard = cardsToCompare.get(0);
-            Card looserCard = cardsToCompare.get(1);
+        switch (input) {
+            case 1:
+                Collections.sort(cardsToCompare, strengthComp);
+                break;
+            case 2:
+                Collections.sort(cardsToCompare, enduranceComp);
+                break;
+            case 3:
+                Collections.sort(cardsToCompare, intelligenceComp);
+                break;
+            case 4:
+                Collections.sort(cardsToCompare, agilityComp);
+                break;
+        }
+        Card winnerCard = cardsToCompare.get(0);
+        Card looserCard = cardsToCompare.get(1);
 
-            if(p1.getHand().get(0) == winnerCard) {
-                System.out.println("The looser card is:");
-                cardDrawer(looserCard);
-                System.out.println("The winner card is:");
-                cardDrawer(winnerCard);
-                System.out.println(p1.getName() + " won the round.");
-                p1.wonTheRound();
-                p2.lostTheRound();
-                p1.addCardToHand(looserCard);
-                promptEnterKey();
-                return p1;
-            } else {
-                System.out.println("The looser card is:");
-                cardDrawer(looserCard);
-                System.out.println("The winner card is:");
-                cardDrawer(winnerCard);
+        if (p1.getHand().get(0) == winnerCard) {
+            System.out.println("The looser card is:");
+            cardDrawer(looserCard);
+            System.out.println("The winner card is:");
+            cardDrawer(winnerCard);
+            System.out.println(p1.getName() + " won the round.");
+            p1.wonTheRound();
+            p2.lostTheRound();
+            p1.addCardToHand(looserCard);
+            //promptEnterKey();
+            return p1;
+        } else {
+            System.out.println("The looser card is:");
+            cardDrawer(looserCard);
+            System.out.println("The winner card is:");
+            cardDrawer(winnerCard);
 
-                System.out.println(p2.getName() + " won the round.");
-                p2.wonTheRound();
-                p1.lostTheRound();
-                p2.addCardToHand(looserCard);
-                p2.starts();
-                p1.doesNotStart();
-                promptEnterKey();
-                return p2;
-            }
+            System.out.println(p2.getName() + " won the round.");
+            p2.wonTheRound();
+            p1.lostTheRound();
+            p2.addCardToHand(looserCard);
+            p2.starts();
+            p1.doesNotStart();
+            //promptEnterKey();
+            return p2;
+        }
     }
 
 
     Comparator<Card> strengthComp = new Comparator<Card>() {
         @Override
         public int compare(Card o1, Card o2) {
-            if (o2.getStrength() > o1.getStrength()) {
+            if (o1.getStrength() < o2.getStrength()) {
                 return 1;
-            } else if ((o2.getStrength() < o1.getStrength())) {
+            } else if ((o1.getStrength() > o2.getStrength())) {
                 return -1;
             }
             return 0;
@@ -192,9 +211,9 @@ public class Gameplay {
     Comparator<Card> enduranceComp = new Comparator<Card>() {
         @Override
         public int compare(Card o1, Card o2) {
-            if (o1.getEndurance() > o2.getEndurance()) {
+            if (o1.getEndurance() < o2.getEndurance()) {
                 return 1;
-            } else if ((o1.getEndurance() < o2.getEndurance())) {
+            } else if ((o1.getEndurance() > o2.getEndurance())) {
                 return -1;
             }
             return 0;
@@ -204,9 +223,9 @@ public class Gameplay {
     Comparator<Card> agilityComp = new Comparator<Card>() {
         @Override
         public int compare(Card o1, Card o2) {
-            if (o1.getAgility() > o2.getAgility()) {
+            if (o1.getAgility() < o2.getAgility()) {
                 return 1;
-            } else if ((o1.getAgility() < o2.getAgility())) {
+            } else if ((o1.getAgility() > o2.getAgility())) {
                 return -1;
             }
             return 0;
@@ -216,9 +235,9 @@ public class Gameplay {
     Comparator<Card> intelligenceComp = new Comparator<Card>() {
         @Override
         public int compare(Card o1, Card o2) {
-            if (o1.getIntelligence() > o2.getIntelligence()) {
+            if (o1.getIntelligence() < o2.getIntelligence()) {
                 return 1;
-            } else if ((o1.getIntelligence() < o2.getIntelligence())) {
+            } else if ((o1.getIntelligence() > o2.getIntelligence())) {
                 return -1;
             }
             return 0;

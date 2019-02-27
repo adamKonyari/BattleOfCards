@@ -79,7 +79,7 @@
         <Attribute name = "Alan Wake" game = "Alan Wake" strength = "18" endurance = "74" intelligence = "85" agility = "26"/>
     </Hero>
     <Hero>
-        <Attribute name = "Dragonborn" game = "Skyrim TES" strength = "73" endurance = "71" intelligence = "36" agility = "42"/>
+        <Attribute name = "Dragonborn" game = "TES Skyrim" strength = "73" endurance = "71" intelligence = "36" agility = "42"/>
     </Hero>
     <Hero>
         <Attribute name = "Ashen One" game = "Dark Souls" strength = "77" endurance = "63" intelligence = "10" agility = "32"/>
