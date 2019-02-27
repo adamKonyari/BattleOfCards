@@ -34,6 +34,7 @@ public class Gameplay {
     }
 
     public void cardDrawer(Card card) {
+
         System.out.println("Game: " + card.getGame());
         System.out.println("Hero: " + card.getName());
         System.out.println("Strength: " + card.getStrength());
@@ -120,8 +121,10 @@ public class Gameplay {
         List<Card> cardsToCompare = new ArrayList<>();
         int input;
             System.out.println(p1.getName() + " will start!");
-            cardsToCompare.add(p1.getHand().get(0));
-            cardsToCompare.add(p2.getHand().get(0));
+            if(p1.getHand().size() != 0 || p2.getHand().size() != 0){
+                cardsToCompare.add(p1.getHand().get(0));
+                cardsToCompare.add(p2.getHand().get(0));
+            }
             cardDrawer(p1.getHand().get(0));
 
             System.out.println("1. Strength\n2. Endurance\n3. Intelligence\n4. Agility\n");
