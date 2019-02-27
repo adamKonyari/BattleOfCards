@@ -133,6 +133,7 @@ public class Gameplay {
             System.out.println(player2.getName() + " won the game!");
         }
         promptEnterKey();
+
     }
 
     private Player round(Player p1, Player p2) {
