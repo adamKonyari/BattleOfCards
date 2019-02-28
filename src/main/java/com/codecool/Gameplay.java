@@ -10,11 +10,11 @@ public class Gameplay {
     CardPrinter cardPrinter = new CardPrinter();
 
     public void start() {
-
+        clearScreen();
         int menuOption;
-
         do {
             while (true) {
+
                 menuPrinter(new String[]{
                     "New Game!",
                     "Not implemented"
@@ -38,18 +38,6 @@ public class Gameplay {
         }
         while (menuOption != 0);
     }
-
-    /*
-    public void cardDrawer(Card card) {
-
-        System.out.println("Game: " + card.getGame());
-        System.out.println("Hero: " + card.getName());
-        System.out.println("Strength: " + card.getStrength());
-        System.out.println("Endurance: " + card.getEndurance());
-        System.out.println("Intelligence: " + card.getIntelligence());
-        System.out.println("Agility: " + card.getAgility());
-    }
-*/
 
     private void menuPrinter(String[] options) {
         int counter = 1;
@@ -77,6 +65,7 @@ public class Gameplay {
     }
 
     private void playerSetup() {
+        clearScreen();
         String p1Name;
         String p2Name;
         int p2Age;
@@ -93,6 +82,7 @@ public class Gameplay {
                 p2Age = Integer.parseInt(getUserInput());
                 break;
             } catch (NumberFormatException ne) {
+                clearScreen();
                 System.out.println("Invalid input. Please try again!");
                 promptEnterKey();
                 continue;
@@ -123,8 +113,7 @@ public class Gameplay {
             } else {
                 round(player2, player1);
             }
-            System.out.println("p1: " + player1.getHand().size());
-            System.out.println("p2: " + player2.getHand().size());
+
         } while (player1.getHand().size() != 0 && player2.getHand().size() != 0);
 
         if (player2.getHand().size() == 0) {
@@ -136,18 +125,29 @@ public class Gameplay {
     }
 
     private Player round(Player p1, Player p2) {
-
+        clearScreen();
         List<Card> cardsToCompare = new ArrayList<>();
         int input;
-        System.out.println(p1.getName() + " will start!");
+
         if (p1.getHand().size() != 0 && p2.getHand().size() != 0) {
             cardsToCompare.add(p1.getHand().get(0));
             cardsToCompare.add(p2.getHand().get(0));
         }
-        cardPrinter.printer(p1.getHand().get(0));
-
-        System.out.print("Choose an attribute: ");
-        input = Integer.parseInt(getUserInput());
+        while(true) {
+            clearScreen();
+            score();
+            System.out.println("\n");
+            cardPrinter.namePrinter(p1);
+            cardPrinter.printer(p1.getHand().get(0));
+            try {
+                System.out.print("\n" + p1.getName() + " chooses an attribute: ");
+                input = Integer.parseInt(getUserInput());
+                if(input > 4) throw new NumberFormatException();
+                break;
+            } catch (NumberFormatException nfe) {
+                continue;
+            }
+        }
 
         switch (input) {
             case 1:
@@ -167,23 +167,33 @@ public class Gameplay {
         Card looserCard = cardsToCompare.get(1);
 
         if (p1.getHand().get(0) == winnerCard) {
-            cardPrinter.printer(winnerCard,looserCard);
-            System.out.println(p1.getName() + " won the round.");
             p1.wonTheRound();
             p2.lostTheRound();
             p1.addCardToHand(looserCard);
+            clearScreen();
+            score();
+            cardPrinter.printer(winnerCard,looserCard);
+            System.out.println("\n" + p1.getName() + " won the round.");
             promptEnterKey();
             return p1;
+
         } else {
-            cardPrinter.printer(winnerCard,looserCard);
-            System.out.println(p2.getName() + " won the round.");
             p2.wonTheRound();
             p1.lostTheRound();
             p2.addCardToHand(looserCard);
             p2.starts();
             p1.doesNotStart();
+            clearScreen();
+            score();
+            cardPrinter.printer(winnerCard,looserCard);
+            System.out.println("\n" + p2.getName() + " won the round.");
+            promptEnterKey();
             return p2;
         }
+    }
+
+    public void score() {
+        System.out.println(this.player1.getName() + ": " + this.player1.getHand().size() + "|" + player2.getHand().size() + ": " + player2.getName() + "\n");
     }
 
 

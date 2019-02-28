@@ -30,7 +30,6 @@ public class CardPrinter {
     }
 
     public void printer(Card winnerCard, Card looserCard) {
-
         System.out.println(top + spaceBetweenCards + top);
         System.out.println(namePrinter(winnerCard.getGame(), looserCard.getGame()));
         System.out.println(divider + spaceBetweenCards + divider);
@@ -65,6 +64,13 @@ public class CardPrinter {
         int whiteSpacesAfterL = 40 - (whiteSpacesBeforeL + looserLen);
         return "|" + stringMultiplyer(" ", whiteSpacesBeforeW) + winnerName + stringMultiplyer(" ", whiteSpacesAfterW) + "|"
             + spaceBetweenCards + "|" + stringMultiplyer(" ", whiteSpacesBeforeL) + looserName + stringMultiplyer(" ", whiteSpacesAfterL) + "|";
+    }
+
+    public String namePrinter(Player player) {
+        int nameLen = player.getName().length();
+        int whiteSpacesBefore = Math.round((42 - nameLen) / 2);
+        int whiteSpacesAfter = 42 - (whiteSpacesBefore + nameLen);
+        return stringMultiplyer(" ", whiteSpacesBefore) + player.getName() + stringMultiplyer(" ", whiteSpacesAfter);
     }
 
     public void attributePrinter(Card card) {
