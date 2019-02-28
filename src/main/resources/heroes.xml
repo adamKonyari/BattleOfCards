@@ -31,7 +31,7 @@
         <Attribute name = "Ryu" game = "Street Fighter" strength = "77" endurance = "82" intelligence = "29" agility = "77"/>
     </Hero>
     <Hero>
-        <Attribute name = "Artyom" game = "Metro" strength = "43" endurance = "45" intelligence = "46" agility = "54"/>
+        <Attribute name = "Artyom" game = "Metro 2033" strength = "43" endurance = "45" intelligence = "46" agility = "54"/>
     </Hero>
     <Hero>
         <Attribute name = "Donkey Kong" game = "Donkey Kong" strength = "87" endurance = "78" intelligence = "18" agility = "67"/>

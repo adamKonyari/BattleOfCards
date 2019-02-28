@@ -38,7 +38,7 @@ public class Gameplay {
                     clearScreen();
                     printer.cardLister(deck);
                     promptEnterKey();
-                    break;
+
             }
         }
         while (menuOption != 0);
@@ -51,22 +51,6 @@ public class Gameplay {
             counter++;
         }
         System.out.println("0. Exit\n");
-    }
-
-    void clearScreen() {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
-    }
-
-    void promptEnterKey() {
-        System.out.println("\n Press \"ENTER\" to continue...");
-        scanner.nextLine();
-    }
-
-    public String getUserInput() {
-        String input = scanner.nextLine();
-        System.out.println();
-        return input;
     }
 
     private void playerSetup() {
@@ -122,9 +106,9 @@ public class Gameplay {
         } while (player1.getHand().size() != 0 && player2.getHand().size() != 0);
 
         if (player2.getHand().size() == 0) {
-            System.out.println(player1.getName() + " won the game!");
+            System.out.println(player1.getName() + " has won the game!");
         } else if (player1.getHand().size() == 0) {
-            System.out.println(player2.getName() + " won the game!");
+            System.out.println(player2.getName() + " has won the game!");
         }
         promptEnterKey();
     }
@@ -179,7 +163,7 @@ public class Gameplay {
             score();
             System.out.println("\n" + printer.namePrinter(p1,p2));
             printer.printer(winnerCard, looserCard);
-            System.out.println("\n" + p1.getName() + " won the round.");
+            System.out.println("\n" + p1.getName() + " has won the round.");
             promptEnterKey();
             return p1;
 
@@ -193,7 +177,7 @@ public class Gameplay {
             score();
             System.out.println("\n" + printer.namePrinter(p2,p1));
             printer.printer(winnerCard, looserCard);
-            System.out.println("\n" + p2.getName() + " won the round.");
+            System.out.println("\n" + p2.getName() + " has won the round.");
             promptEnterKey();
             return p2;
         }
@@ -201,6 +185,22 @@ public class Gameplay {
 
     public void score() {
         System.out.println(this.player1.getName() + ": " + this.player1.getHand().size() + "|" + player2.getHand().size() + ": " + player2.getName() + "\n");
+    }
+
+    void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+    }
+
+    void promptEnterKey() {
+        System.out.println("\n Press \"ENTER\" to continue...");
+        scanner.nextLine();
+    }
+
+    public String getUserInput() {
+        String input = scanner.nextLine();
+        System.out.println();
+        return input;
     }
 
 

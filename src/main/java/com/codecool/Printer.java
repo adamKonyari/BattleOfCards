@@ -122,9 +122,17 @@ public class Printer {
 
     public void cardLister(Deck deck) {
         deck.sort();
+        String cardDetails;
+        String divider = " |––––––––––––––––––––––|––––––––––––––––––––––|––––|––––|––––|––––| ";
+        System.out.println(" /––––––––––––––––––––––|––––––––––––––––––––––|––––|––––|––––|––––\\ ");
+        System.out.println(" | Character            | Game                 |STR |END |INT |AGI |");
         for(Card card: deck.getCards()) {
-            System.out.println(" | " + card.getName() + stringMultiplyer(" ", 20 - card.getName().length()) + " | " + card.getGame() + stringMultiplyer(" ",20 - card.getGame().length()) + " | " + card.getStrength() + " | " + card.getEndurance() + " | " + card.getIntelligence()+ " | " + card.getAgility() + " | ");
+            cardDetails = " | " + card.getName() + stringMultiplyer(" ", 20 - card.getName().length()) + " | " + card.getGame() + stringMultiplyer(" ",20 - card.getGame().length()) + " | " + card.getStrength() + " | " + card.getEndurance() + " | " + card.getIntelligence()+ " | " + card.getAgility() + " | ";
+
+            System.out.println(divider);
+            System.out.println(cardDetails);
         }
+        System.out.println(" \\––––––––––––––––––––––|––––––––––––––––––––––|––––|––––|––––|––––/ ");
     }
 
     public String stringMultiplyer(String s, int count) {
