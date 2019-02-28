@@ -167,22 +167,15 @@ public class Gameplay {
         Card looserCard = cardsToCompare.get(1);
 
         if (p1.getHand().get(0) == winnerCard) {
-            System.out.println("The looser card is:");
-            cardPrinter.printer(looserCard);
-            System.out.println("The winner card is:");
-            cardPrinter.printer(winnerCard);
+            cardPrinter.printer(winnerCard,looserCard);
             System.out.println(p1.getName() + " won the round.");
             p1.wonTheRound();
             p2.lostTheRound();
             p1.addCardToHand(looserCard);
-            //promptEnterKey();
+            promptEnterKey();
             return p1;
         } else {
-            System.out.println("The looser card is:");
-            cardPrinter.printer(looserCard);
-            System.out.println("The winner card is:");
-            cardPrinter.printer(winnerCard);
-
+            cardPrinter.printer(winnerCard,looserCard);
             System.out.println(p2.getName() + " won the round.");
             p2.wonTheRound();
             p1.lostTheRound();
