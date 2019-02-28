@@ -7,7 +7,7 @@ public class Gameplay {
     Deck deck = new Deck();
     Player player1;
     Player player2;
-    CardPrinter cardPrinter = new CardPrinter();
+    Printer printer = new Printer();
 
     public void start() {
         clearScreen();
@@ -17,7 +17,7 @@ public class Gameplay {
 
                 menuPrinter(new String[]{
                     "New Game!",
-                    "Not implemented"
+                    "List cards"
                 });
                 System.out.print("Please select an option: ");
                 try {
@@ -33,6 +33,11 @@ public class Gameplay {
                 case 1:
                     playerSetup();
                     pvp();
+                    break;
+                case 2:
+                    clearScreen();
+                    printer.cardLister(deck);
+                    promptEnterKey();
                     break;
             }
         }
@@ -137,8 +142,8 @@ public class Gameplay {
             clearScreen();
             score();
             System.out.println("\n");
-            System.out.println(cardPrinter.namePrinter(p1));
-            cardPrinter.printer(p1.getHand().get(0));
+            System.out.println(printer.namePrinter(p1));
+            printer.printer(p1.getHand().get(0));
             try {
                 System.out.print("\n" + p1.getName() + " chooses an attribute: ");
                 input = Integer.parseInt(getUserInput());
@@ -172,8 +177,8 @@ public class Gameplay {
             p1.addCardToHand(looserCard);
             clearScreen();
             score();
-            System.out.println("\n" + cardPrinter.namePrinter(p1,p2));
-            cardPrinter.printer(winnerCard, looserCard);
+            System.out.println("\n" + printer.namePrinter(p1,p2));
+            printer.printer(winnerCard, looserCard);
             System.out.println("\n" + p1.getName() + " won the round.");
             promptEnterKey();
             return p1;
@@ -186,8 +191,8 @@ public class Gameplay {
             p1.doesNotStart();
             clearScreen();
             score();
-            System.out.println("\n" + cardPrinter.namePrinter(p2,p1));
-            cardPrinter.printer(winnerCard, looserCard);
+            System.out.println("\n" + printer.namePrinter(p2,p1));
+            printer.printer(winnerCard, looserCard);
             System.out.println("\n" + p2.getName() + " won the round.");
             promptEnterKey();
             return p2;

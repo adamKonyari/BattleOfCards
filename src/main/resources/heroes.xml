@@ -28,7 +28,7 @@
         <Attribute name = "Gordon Freeman" game = "Half-Life" strength = "28" endurance = "32" intelligence = "88" agility = "37"/>
     </Hero>
     <Hero>
-        <Attribute name = "Ezio" game = "Assasin's Creed" strength = "34" endurance = "52" intelligence = "40" agility = "64"/>
+        <Attribute name = "Ryu" game = "Street Fighter" strength = "77" endurance = "82" intelligence = "29" agility = "77"/>
     </Hero>
     <Hero>
         <Attribute name = "Artyom" game = "Metro" strength = "43" endurance = "45" intelligence = "46" agility = "54"/>
@@ -82,13 +82,13 @@
         <Attribute name = "Dragonborn" game = "TES Skyrim" strength = "73" endurance = "71" intelligence = "36" agility = "42"/>
     </Hero>
     <Hero>
-        <Attribute name = "Ashen One" game = "Dark Souls" strength = "77" endurance = "63" intelligence = "10" agility = "32"/>
+        <Attribute name = "Ashen One" game = "Dark Souls" strength = "78" endurance = "63" intelligence = "10" agility = "32"/>
     </Hero>
     <Hero>
         <Attribute name = "RayMan" game = "RayMan" strength = "24" endurance = "76" intelligence = "26" agility = "65"/>
     </Hero>
     <Hero>
-        <Attribute name = "Crash" game = "Crash Bandicoot" strength = "56" endurance = "79" intelligence = "19" agility = "77"/>
+        <Attribute name = "Crash" game = "Crash Bandicoot" strength = "56" endurance = "79" intelligence = "19" agility = "64"/>
     </Hero>
     <Hero>
         <Attribute name = "Kirby" game = "Kirby Super Star" strength = "10" endurance = "65" intelligence = "24" agility = "56"/>

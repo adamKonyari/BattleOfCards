@@ -1,6 +1,6 @@
 package com.codecool;
 
-public class CardPrinter {
+public class Printer {
 
     String top = "/––––––––––––––––––––––––––––––––––––––––\\";
     String side = "|                                        |";
@@ -118,6 +118,13 @@ public class CardPrinter {
         System.out.println("|            / __  / __ \\/ /             |" + spaceBetweenCards + "|            / __  / __ \\/ /             |");
         System.out.println("|           / /_/ / /_/ / /___           |" + spaceBetweenCards + "|           / /_/ / /_/ / /___           |");
         System.out.println("|          /_____/\\____/\\____/           |" + spaceBetweenCards + "|          /_____/\\____/\\____/           |");
+    }
+
+    public void cardLister(Deck deck) {
+        deck.sort();
+        for(Card card: deck.getCards()) {
+            System.out.println(" | " + card.getName() + stringMultiplyer(" ", 20 - card.getName().length()) + " | " + card.getGame() + stringMultiplyer(" ",20 - card.getGame().length()) + " | " + card.getStrength() + " | " + card.getEndurance() + " | " + card.getIntelligence()+ " | " + card.getAgility() + " | ");
+        }
     }
 
     public String stringMultiplyer(String s, int count) {

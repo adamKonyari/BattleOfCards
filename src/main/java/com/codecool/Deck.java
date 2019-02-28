@@ -17,7 +17,12 @@ public class Deck {
         Collections.shuffle(this.cards);
     }
 
+    public void sort() {
+        Collections.sort(cards);
+    }
+
     public List<Card> getCards() {
         return cards;
     }
+
 }

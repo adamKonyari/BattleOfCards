@@ -4,7 +4,7 @@ package com.codecool;
 strength, endurance, intelligence, vitality
 */
 
-public class Card {
+public class Card implements Comparable<Card>{
 
     private String name;
     private String game;
@@ -57,5 +57,10 @@ public class Card {
             ", intellingence=" + intelligence +
             ", agility=" + agility +
             '}';
+    }
+
+    @Override
+    public int compareTo(Card o) {
+        return this.getName().compareTo(o.getName());
     }
 }
