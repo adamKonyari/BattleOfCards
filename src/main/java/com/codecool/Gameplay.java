@@ -7,8 +7,7 @@ public class Gameplay {
     Deck deck = new Deck();
     Player player1;
     Player player2;
-    Player firstPlayer;
-    Player secondPlayer;
+    CardPrinter cardPrinter = new CardPrinter();
 
     public void start() {
 
@@ -40,6 +39,7 @@ public class Gameplay {
         while (menuOption != 0);
     }
 
+    /*
     public void cardDrawer(Card card) {
 
         System.out.println("Game: " + card.getGame());
@@ -49,7 +49,7 @@ public class Gameplay {
         System.out.println("Intelligence: " + card.getIntelligence());
         System.out.println("Agility: " + card.getAgility());
     }
-
+*/
 
     private void menuPrinter(String[] options) {
         int counter = 1;
@@ -133,8 +133,6 @@ public class Gameplay {
             System.out.println(player2.getName() + " won the game!");
         }
         promptEnterKey();
-
-
     }
 
     private Player round(Player p1, Player p2) {
@@ -146,9 +144,8 @@ public class Gameplay {
             cardsToCompare.add(p1.getHand().get(0));
             cardsToCompare.add(p2.getHand().get(0));
         }
-        cardDrawer(p1.getHand().get(0));
+        cardPrinter.printer(p1.getHand().get(0));
 
-        System.out.println("1. Strength\n2. Endurance\n3. Intelligence\n4. Agility\n");
         System.out.print("Choose an attribute: ");
         input = Integer.parseInt(getUserInput());
 
@@ -171,9 +168,9 @@ public class Gameplay {
 
         if (p1.getHand().get(0) == winnerCard) {
             System.out.println("The looser card is:");
-            cardDrawer(looserCard);
+            cardPrinter.printer(looserCard);
             System.out.println("The winner card is:");
-            cardDrawer(winnerCard);
+            cardPrinter.printer(winnerCard);
             System.out.println(p1.getName() + " won the round.");
             p1.wonTheRound();
             p2.lostTheRound();
@@ -182,9 +179,9 @@ public class Gameplay {
             return p1;
         } else {
             System.out.println("The looser card is:");
-            cardDrawer(looserCard);
+            cardPrinter.printer(looserCard);
             System.out.println("The winner card is:");
-            cardDrawer(winnerCard);
+            cardPrinter.printer(winnerCard);
 
             System.out.println(p2.getName() + " won the round.");
             p2.wonTheRound();
@@ -192,7 +189,6 @@ public class Gameplay {
             p2.addCardToHand(looserCard);
             p2.starts();
             p1.doesNotStart();
-            //promptEnterKey();
             return p2;
         }
     }

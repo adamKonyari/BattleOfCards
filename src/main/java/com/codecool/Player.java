@@ -14,7 +14,6 @@ public class Player {
         this.hand = hand;
     }
 
-
     public String getName() {
         return name;
     }
@@ -38,9 +37,11 @@ public class Player {
     public void addCardToHand(Card card){
         hand.add(card);
     }
+
     public void lostTheRound(){
         hand.remove(0);
     }
+
     public void wonTheRound() {
         Card tempCard = this.hand.get(0);
         this.hand.remove(tempCard);
