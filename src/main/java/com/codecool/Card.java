@@ -43,7 +43,9 @@ public class Card {
         return intelligence;
     }
 
-    public int getAgility() { return agility; }
+    public int getAgility() {
+        return agility;
+    }
 
     @Override
     public String toString() {

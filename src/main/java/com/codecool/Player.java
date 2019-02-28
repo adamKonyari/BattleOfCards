@@ -8,7 +8,7 @@ public class Player {
     private List<Card> hand;
     private boolean starts = false;
 
-    public Player(String name,int age, List<Card> hand) {
+    public Player(String name, int age, List<Card> hand) {
         this.age = age;
         this.name = name;
         this.hand = hand;
@@ -34,11 +34,11 @@ public class Player {
         this.starts = false;
     }
 
-    public void addCardToHand(Card card){
+    public void addCardToHand(Card card) {
         hand.add(card);
     }
 
-    public void lostTheRound(){
+    public void lostTheRound() {
         hand.remove(0);
     }
 

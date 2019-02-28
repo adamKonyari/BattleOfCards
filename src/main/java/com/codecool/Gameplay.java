@@ -133,16 +133,16 @@ public class Gameplay {
             cardsToCompare.add(p1.getHand().get(0));
             cardsToCompare.add(p2.getHand().get(0));
         }
-        while(true) {
+        while (true) {
             clearScreen();
             score();
             System.out.println("\n");
-            cardPrinter.namePrinter(p1);
+            System.out.println(cardPrinter.namePrinter(p1));
             cardPrinter.printer(p1.getHand().get(0));
             try {
                 System.out.print("\n" + p1.getName() + " chooses an attribute: ");
                 input = Integer.parseInt(getUserInput());
-                if(input > 4) throw new NumberFormatException();
+                if (input > 4) throw new NumberFormatException();
                 break;
             } catch (NumberFormatException nfe) {
                 continue;
@@ -172,7 +172,8 @@ public class Gameplay {
             p1.addCardToHand(looserCard);
             clearScreen();
             score();
-            cardPrinter.printer(winnerCard,looserCard);
+            System.out.println("\n" + cardPrinter.namePrinter(p1,p2));
+            cardPrinter.printer(winnerCard, looserCard);
             System.out.println("\n" + p1.getName() + " won the round.");
             promptEnterKey();
             return p1;
@@ -185,7 +186,8 @@ public class Gameplay {
             p1.doesNotStart();
             clearScreen();
             score();
-            cardPrinter.printer(winnerCard,looserCard);
+            System.out.println("\n" + cardPrinter.namePrinter(p2,p1));
+            cardPrinter.printer(winnerCard, looserCard);
             System.out.println("\n" + p2.getName() + " won the round.");
             promptEnterKey();
             return p2;

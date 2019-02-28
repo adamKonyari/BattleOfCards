@@ -73,6 +73,17 @@ public class CardPrinter {
         return stringMultiplyer(" ", whiteSpacesBefore) + player.getName() + stringMultiplyer(" ", whiteSpacesAfter);
     }
 
+    public String namePrinter(Player winnerPlayer,Player looserPlayer) {
+        int winnerLen = winnerPlayer.getName().length();
+        int looserLen = winnerPlayer.getName().length();
+        int whiteSpacesBeforeW = Math.round((42 - winnerLen) / 2);
+        int whiteSpacesBeforeL = Math.round((44 - looserLen) / 2);
+        int whiteSpacesAfterW = 42 - (whiteSpacesBeforeW + winnerLen);
+        int whiteSpacesAfterL = 44 - (whiteSpacesBeforeL + looserLen);
+        return stringMultiplyer(" ", whiteSpacesBeforeW) + winnerPlayer.getName() + stringMultiplyer(" ", whiteSpacesAfterW) + spaceBetweenCards +
+            stringMultiplyer(" ", whiteSpacesBeforeL) + looserPlayer.getName() + stringMultiplyer(" ", whiteSpacesAfterL);
+    }
+
     public void attributePrinter(Card card) {
         System.out.println(side);
         System.out.println("| 1. Strength:     " + card.getStrength() + "   2. Endurance: " + card.getEndurance() + " |");
@@ -100,11 +111,12 @@ public class CardPrinter {
         System.out.println("|           / /_/ / /_/ / /___           |");
         System.out.println("|          /_____/\\____/\\____/           |");
     }
+
     public void twoLogoPrinter() {
         System.out.println("|              ____        ______        |" + spaceBetweenCards + "|              ____        ______        |");
         System.out.println("|             / __ )____  / ____/        |" + spaceBetweenCards + "|             / __ )____  / ____/        |");
         System.out.println("|            / __  / __ \\/ /             |" + spaceBetweenCards + "|            / __  / __ \\/ /             |");
-        System.out.println("|           / /_/ / /_/ / /___           |" + spaceBetweenCards + "|           / /_/ / /_/ / /___           |" );
+        System.out.println("|           / /_/ / /_/ / /___           |" + spaceBetweenCards + "|           / /_/ / /_/ / /___           |");
         System.out.println("|          /_____/\\____/\\____/           |" + spaceBetweenCards + "|          /_____/\\____/\\____/           |");
     }
 
