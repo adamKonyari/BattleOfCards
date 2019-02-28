@@ -77,9 +77,9 @@ public class Printer {
         int winnerLen = winnerPlayer.getName().length();
         int looserLen = winnerPlayer.getName().length();
         int whiteSpacesBeforeW = Math.round((42 - winnerLen) / 2);
-        int whiteSpacesBeforeL = Math.round((44 - looserLen) / 2);
+        int whiteSpacesBeforeL = Math.round((42 - looserLen) / 2);
         int whiteSpacesAfterW = 42 - (whiteSpacesBeforeW + winnerLen);
-        int whiteSpacesAfterL = 44 - (whiteSpacesBeforeL + looserLen);
+        int whiteSpacesAfterL = 42 - (whiteSpacesBeforeL + looserLen);
         return stringMultiplyer(" ", whiteSpacesBeforeW) + winnerPlayer.getName() + stringMultiplyer(" ", whiteSpacesAfterW) + spaceBetweenCards +
             stringMultiplyer(" ", whiteSpacesBeforeL) + looserPlayer.getName() + stringMultiplyer(" ", whiteSpacesAfterL);
     }

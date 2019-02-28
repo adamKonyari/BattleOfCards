@@ -10,11 +10,11 @@ public class Gameplay {
     Printer printer = new Printer();
 
     public void start() {
-        clearScreen();
+
         int menuOption;
         do {
             while (true) {
-
+                clearScreen();
                 menuPrinter(new String[]{
                     "New Game!",
                     "List cards"
@@ -44,22 +44,15 @@ public class Gameplay {
         while (menuOption != 0);
     }
 
-    private void menuPrinter(String[] options) {
-        int counter = 1;
-        for (String option : options) {
-            System.out.println(counter + ". " + option);
-            counter++;
-        }
-        System.out.println("0. Exit\n");
-    }
+
 
     private void playerSetup() {
-        clearScreen();
         String p1Name;
         String p2Name;
         int p2Age;
         int p1Age;
         while (true) {
+            clearScreen();
             try {
                 System.out.print("Player one name: ");
                 p1Name = getUserInput();
@@ -125,8 +118,7 @@ public class Gameplay {
         while (true) {
             clearScreen();
             score();
-            System.out.println("\n");
-            System.out.println(printer.namePrinter(p1));
+            System.out.println("\n" + printer.namePrinter(p1));
             printer.printer(p1.getHand().get(0));
             try {
                 System.out.print("\n" + p1.getName() + " chooses an attribute: ");
@@ -201,6 +193,14 @@ public class Gameplay {
         String input = scanner.nextLine();
         System.out.println();
         return input;
+    }
+    private void menuPrinter(String[] options) {
+        int counter = 1;
+        for (String option : options) {
+            System.out.println(counter + ". " + option);
+            counter++;
+        }
+        System.out.println("0. Exit\n");
     }
 
 
