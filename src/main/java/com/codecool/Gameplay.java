@@ -176,7 +176,7 @@ public class Gameplay {
     }
 
     public void score() {
-        System.out.println(this.player1.getName() + ": " + this.player1.getHand().size() + "|" + player2.getHand().size() + ": " + player2.getName() + "\n");
+        System.out.println(this.player1.getName() + ": " + this.player1.getHand().size() + "|" + player2.getHand().size() + " :" + player2.getName() + "\n");
     }
 
     void clearScreen() {

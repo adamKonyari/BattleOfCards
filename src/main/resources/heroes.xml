@@ -70,7 +70,7 @@
         <Attribute name = "Dante" game = "Devil May Cry" strength = "71" endurance = "78" intelligence = "43" agility = "82"/>
     </Hero>
     <Hero>
-        <Attribute name = "Ellie" game = "Last of Us" strength = "11" endurance = "67" intelligence = "42" agility = "69"/>
+        <Attribute name = "Ellie" game = "The Last of Us" strength = "11" endurance = "67" intelligence = "42" agility = "69"/>
     </Hero>
     <Hero>
         <Attribute name = "Leon" game = "Resident Evil" strength = "20" endurance = "73" intelligence = "62" agility = "51"/>
@@ -82,7 +82,7 @@
         <Attribute name = "Dragonborn" game = "TES Skyrim" strength = "73" endurance = "71" intelligence = "36" agility = "42"/>
     </Hero>
     <Hero>
-        <Attribute name = "Ashen One" game = "Dark Souls" strength = "78" endurance = "63" intelligence = "10" agility = "32"/>
+        <Attribute name = "Ashen One" game = "Dark Souls III" strength = "78" endurance = "63" intelligence = "10" agility = "32"/>
     </Hero>
     <Hero>
         <Attribute name = "RayMan" game = "RayMan" strength = "24" endurance = "76" intelligence = "26" agility = "65"/>
